@@ -3,6 +3,8 @@ import React from 'react'
 import { Slider } from "@/components/ui/slider"
 import { useState,useEffect } from 'react'
 import ColorPickerController from './ColorPickerController';
+import { useContext } from 'react';
+import { UpdateStorageContext } from '../context/UpdateStorageContext';
 
 
 function IconController() {
@@ -10,6 +12,7 @@ function IconController() {
     const [rotate, setRotate] = useState(0);
     const [color, setColor] = useState('rgba(255,255,255,1)');
     const storageValue = JSON.parse(localStorage.getItem('value'));
+    const {updateStorage,setUpdateStorage} = useContext(UpdateStorageContext);
 
     useEffect(() => {
       const updatedValue = {
@@ -19,12 +22,13 @@ function IconController() {
         iconColor: color,
         icon:'Smile'
       }
+      setUpdateStorage(updatedValue);
       localStorage.setItem('value', JSON.stringify(updatedValue));
     }, [size,rotate,color])
     
 
   return (
-    <div>
+    <div className='h-screen w-full'>
         <div>
             <label>Icon</label>
             <div className="p-3 cursor-pointer bg-gray-200 rounded-md w-[50px] h-[50px] flex items-center justify-center my-2">
