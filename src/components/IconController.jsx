@@ -1,7 +1,7 @@
 import { Smile } from 'lucide-react'
 import React from 'react'
 import { Slider } from "@/components/ui/slider"
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import ColorPickerController from './ColorPickerController';
 
 
@@ -31,7 +31,7 @@ function IconController() {
             <Smile/>
             </div>
             <div className="py-2">
-                <label className='p-2 flex justify-between items-center'>Size <span>{size} px</span></label>
+                <label className='p-2 flex justify-between items-center'>Size <span>{size}px</span></label>
                 <Slider defaultValue={[280]} max={512} step={1} onValueChange={(event)=>setSize(event[0])} />
             </div>
             <div className="py-2">
