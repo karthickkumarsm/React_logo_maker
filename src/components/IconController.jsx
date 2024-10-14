@@ -8,10 +8,10 @@ import { UpdateStorageContext } from '../context/UpdateStorageContext';
 
 
 function IconController() {
+  const storageValue = JSON.parse(localStorage.getItem('value'));
     const [size, setSize] = useState(storageValue?storageValue?.iconSize:280);
     const [rotate, setRotate] = useState(storageValue?storageValue?.iconRotate:0);
-    const [color, setColor] = useState('rgba(255,255,255,1)');
-    const storageValue = JSON.parse(localStorage.getItem('value'));
+    const [color, setColor] = useState(storageValue?storageValue?.iconColor:'rgba(0,0,0,1)');
     const {updateStorage,setUpdateStorage} = useContext(UpdateStorageContext);
 
     useEffect(() => {

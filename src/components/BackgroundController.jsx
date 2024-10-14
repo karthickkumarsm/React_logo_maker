@@ -6,10 +6,10 @@ import { useContext } from 'react';
 import { UpdateStorageContext } from '../context/UpdateStorageContext';
 
 function BackgroundController() {
-    const [rounded, setRounded] = useState(0);
-    const [padding, setPadding] = useState(0);
-    const [color, setColor] = useState('rgba(255,255,255,1)');
-    const storageValue = JSON.parse(localStorage.getItem('value'));
+  const storageValue = JSON.parse(localStorage.getItem('value'));
+    const [rounded, setRounded] = useState(storageValue?storageValue?.bgRounded:0);
+    const [padding, setPadding] = useState(storageValue?storageValue?.bgPadding:40);
+    const [color, setColor] = useState(storageValue?storageValue?.bgColor:'rgba(255,255,255,1)');
     const {updateStorage,setUpdateStorage} = useContext(UpdateStorageContext);
 
     useEffect(() => {
@@ -28,11 +28,11 @@ function BackgroundController() {
     <div className='h-screen w-full'>
         <div className="py-2">
                 <label className='p-2 flex justify-between items-center'>Rounded <span>{rounded}px</span></label>
-                <Slider defaultValue={[0]} max={512} step={1} onValueChange={(event)=>setRounded(event[0])} />
+                <Slider defaultValue={[rounded]} max={512} step={1} onValueChange={(event)=>setRounded(event[0])} />
         </div>
         <div className="py-2">
                 <label className='p-2 flex justify-between items-center'>Padding <span>{padding}px</span></label>
-                <Slider defaultValue={[40]} max={100} step={1} onValueChange={(event)=>setPadding(event[0])} />
+                <Slider defaultValue={[padding]} max={100} step={1} onValueChange={(event)=>setPadding(event[0])} />
         </div>
         <div className="py-2">
                 <label className='p-2 flex justify-between items-center'>Background Color</label>
