@@ -5,6 +5,7 @@ import { useState,useEffect } from 'react'
 import ColorPickerController from './ColorPickerController';
 import { useContext } from 'react';
 import { UpdateStorageContext } from '../context/UpdateStorageContext';
+import IconList from './IconList';
 
 
 function IconController() {
@@ -30,10 +31,7 @@ function IconController() {
   return (
     <div className='h-screen w-full'>
         <div>
-            <label>Icon</label>
-            <div className="p-3 cursor-pointer bg-gray-200 rounded-md w-[50px] h-[50px] flex items-center justify-center my-2">
-            <Smile/>
-            </div>
+          <IconList/>
             <div className="py-2">
                 <label className='p-2 flex justify-between items-center'>Size <span>{size}px</span></label>
                 <Slider defaultValue={[size]} max={512} step={1} onValueChange={(event)=>setSize(event[0])} />
