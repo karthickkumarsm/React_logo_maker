@@ -13,6 +13,7 @@ function IconController() {
     const [size, setSize] = useState(storageValue?storageValue?.iconSize:280);
     const [rotate, setRotate] = useState(storageValue?storageValue?.iconRotate:0);
     const [color, setColor] = useState(storageValue?storageValue?.iconColor:'rgba(0,0,0,1)');
+    const [icon, setIcon] = useState(storageValue?storageValue?.icon: 'Smile');
     const {updateStorage,setUpdateStorage} = useContext(UpdateStorageContext);
 
     useEffect(() => {
@@ -21,17 +22,17 @@ function IconController() {
         iconSize: size,
         iconRotate: rotate,
         iconColor: color,
-        icon:'Smile'
+        icon:icon
       }
       setUpdateStorage(updatedValue);
       localStorage.setItem('value', JSON.stringify(updatedValue));
-    }, [size,rotate,color])
+    }, [size,rotate,color,icon])
     
 
   return (
     <div className='h-screen w-full'>
         <div>
-          <IconList/>
+          <IconList selectedIcon={(icon)=>setIcon(icon)}/>
             <div className="py-2">
                 <label className='p-2 flex justify-between items-center'>Size <span>{size}px</span></label>
                 <Slider defaultValue={[size]} max={512} step={1} onValueChange={(event)=>setSize(event[0])} />
