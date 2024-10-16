@@ -31,7 +31,7 @@ function LogoPreview({downloadIcon}) {
         downloadLink.click();
        })
         }
-    }
+    
     
 
     const Icon = ({name,color,size}) => {
@@ -58,6 +58,7 @@ function LogoPreview({downloadIcon}) {
         </div>
     </div>
   )
+}
 
 
 export default LogoPreview
