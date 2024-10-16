@@ -2,7 +2,7 @@ import {useEffect,useState,useContext} from 'react'
 import { UpdateStorageContext } from '../context/UpdateStorageContext';
 import { icons } from 'lucide-react';
 
-function LogoPreview() {
+function LogoPreview({downloadIcon}) {
 
     const [storageValue, setStorageValue] = useState();
     const {updateStorage,setUpdateStorage} = useContext(UpdateStorageContext);
@@ -11,6 +11,15 @@ function LogoPreview() {
         const storageData = JSON.parse(localStorage.getItem('value'));
         setStorageValue(storageData);
     }, [updateStorage])
+
+    useEffect(() => {
+      if(downloadIcon){
+
+      }
+    }, [downloadIcon])
+
+    
+    
 
     const Icon = ({name,color,size}) => {
         const LucidIcon = icons[name];
