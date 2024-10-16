@@ -31,7 +31,7 @@ function IconList({selectedIcon}) {
             <Icon name={icon} size={20} color='black'/>
             </div>
         </div>
-        <Dialog open={openDialog}>
+        <Dialog open={openDialog} onOpenChange={setOpenDialog}>
         <DialogContent>
             <DialogHeader>
             <DialogTitle>Pick your Icon for creating a Logo</DialogTitle>
