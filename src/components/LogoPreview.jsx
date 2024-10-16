@@ -58,6 +58,6 @@ function LogoPreview({downloadIcon}) {
         </div>
     </div>
   )
-}
+
 
 export default LogoPreview
