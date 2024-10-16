@@ -1,6 +1,7 @@
 import {useEffect,useState,useContext} from 'react'
 import { UpdateStorageContext } from '../context/UpdateStorageContext';
 import { icons } from 'lucide-react';
+import html2canvas from 'html2canvas';
 
 function LogoPreview({downloadIcon}) {
 
@@ -14,11 +15,23 @@ function LogoPreview({downloadIcon}) {
 
     useEffect(() => {
       if(downloadIcon){
-
+        downloadPngIcon();
       }
     }, [downloadIcon])
 
-    
+    const downloadPngIcon = () => {
+        const downloadLogoDiv = document.getElementById('downloadLogoDiv');
+       html2canvas(downloadLogoDiv,{
+        backgroundColor: null,
+       }).then(canvas => {
+        const pngImage = canvas.toDataURL('image/png');
+        const downloadLink = document.createElement('a');
+        downloadLink.href = pngImage;
+        downloadLink.download = 'logo.png';
+        downloadLink.click();
+       })
+        }
+    }
     
 
     const Icon = ({name,color,size}) => {
@@ -36,7 +49,7 @@ function LogoPreview({downloadIcon}) {
             padding:storageValue?.bgPadding,
         }}
         >
-            <div className="h-full w-full flex items-center justify-center" style={{
+            <div id='downloadLogoDiv' className="h-full w-full flex items-center justify-center" style={{
                 borderRadius:storageValue?.bgRounded,
                 background:storageValue?.bgColor,
                 }}>
